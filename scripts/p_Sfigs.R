@@ -71,7 +71,7 @@ multipanel <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
   }
 }
 
-# convert outros to data frames, add incidence of diagnosed infections for both activity groups ("visIncT"), name data frame columns
+# convert outros to data frames, add incidence of diagnosed and treated infections for both activity groups ("visIncT"), name data frame columns
 df.het <- as.data.frame(outros.het)
 df.het[,12] <- outros.het[,6]*outros.het[,11]
 colnames(df.het) <- c("prevL", "prevH", "prevT", "incL", "incH", "incT", "epsilon", "betaL", "betaH", "D", "f", "visIncT")
@@ -111,7 +111,7 @@ p.het.inc <- ggplot()+
   theme(text = element_text(size=8))+
   theme(strip.background = element_rect(fill = "khaki1",size = 1))+
   geom_histogram(data=df.het.inc, aes(x=Value*100000, y=..density..), fill="dodgerblue3", size=0.1, colour="dodgerblue3", alpha=0.5)+
-  xlab("incidence of diagnosed infections (per 100 000 persons per year)")
+  xlab("incidence of diagnosed and treated infections (per 100 000 persons per year)")
 
 # seperate previous plot into three panels (according to group)
 multi.het.inc <- p.het.inc + facet_wrap( ~ Group, ncol=3, scales="free")
@@ -154,7 +154,7 @@ p.msm.inc <- ggplot()+
   theme(strip.background = element_rect(fill = "khaki1",size = 1))+
   geom_histogram(data=df.msm.inc, aes(x=Value*100000, y=..density..), fill="darkolivegreen3", size=0.1, colour="darkolivegreen3", alpha=0.5)+
   scale_x_continuous(breaks=c(0,1000,2000,3000,6000,6400,6800,7200,70000,100000,130000))+ # set nice brekas for x axis labels
-  xlab("incidence of diagnosed infections (per 100 000 persons per year)")
+  xlab("incidence of diagnosed and treated infections (per 100 000 persons per year)")
 
 # seperate previous plot into three panels (according to group)
 multi.msm.inc <- p.msm.inc + facet_wrap( ~ Group, ncol=3, scales="free")

@@ -76,8 +76,9 @@ p <- ggplot(df, aes(x=times)) +
   geom_line(aes(x=times, y=0.05*100), linetype="dotted", size=0.5) + # plot 5% threshold
   scale_colour_manual(values=c("darkolivegreen3","dodgerblue3"), guide=guide_legend(title="", reverse=T)) + # set colours in legend
   scale_fill_manual(values=c("darkolivegreen3","dodgerblue3"), guide=guide_legend(title="", reverse=T)) + # set fill (colours) in legend
-  labs(x="years", y="proportion infections\ncaused by resistant strain (in %)") # rename axis labels
-
+  labs(x=expression(paste("years after first appearance of antibiotic-resistant ", italic("N. gonorrhoeae"))), 
+       y=expression(atop("proportion antibiotic-resistant", italic("N. gonorrhoeae") *" (in %)")))
+#   labs(x="years after first appearance of resistant strain", y="proportion infections\ncaused by resistant strain (in %)") # rename axis labels
 # # output as .eps file
 # cairo_ps("../figures/Fig4.eps", width=11, height=7)
 # p

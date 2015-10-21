@@ -254,7 +254,7 @@ all <- ggplot() +
   geom_line(data=df.plot[which(df.plot$Sim==1),], size=0.5, linetype="dashed", aes(x=Year, y=Resistance, colour=Group)) +
   geom_point(data=df.plot[which(df.plot$Sim==0),], size=2.5, aes(x=Year, y=Resistance, colour=Group)) +
   scale_colour_manual(values=c("dodgerblue3","darkolivegreen3"))+
-  labs(y="% resistant isolates", x="Year") +
+  labs(y=expression(atop("proportion antibiotic-resistant", italic("N. gonorrhoeae") *" (in %)")), x="Year") +
   xlim(1995,2010) + 
   ylim(0,55)
 
