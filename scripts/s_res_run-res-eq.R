@@ -35,9 +35,10 @@ ea_a <- part
   
 # mutation rates (SPONTANEOUS MUTATIONS)
 mu_a0 <- 0
+mu_0a <- 0
   
 # mutation rates (treatment induced)
-mu_ta <- 0
+# mu_ta <- 0 # see below
 
 # parameters currently fixed
 alpha <- 1/(44-16+1)
@@ -63,22 +64,24 @@ for (k in 1:nrow(theta)){
   beta <- matrix(c(betaL,sqrt(betaL*betaH),sqrt(betaL*betaH),betaH),nrow=noG,ncol=noG)
   
   # run model into resistant-free equilibrium
-  mu_0a <- 0
+  mu_ta <- 0
   parms  <- c(c=c, noG=noG, alpha=alpha, v=v, gamma=gamma, rho=rho, 
               ta=ta, 
               e0_a=e0_a, 
               ea_a=ea_a, 
+              mu_ta=mu_ta,
               mu_0a=mu_0a, 
               mu_a0=mu_a0
   )
   temp.out <- runsteady(init, c(0,years), model, parms)
 
   # run model into resistant equilibrium
-  mu_0a <- 10^(-3)
+  mu_ta <- 10^(-3)
   parms  <- c(c=c, noG=noG, alpha=alpha, v=v, gamma=gamma, rho=rho, 
               ta=ta, 
               e0_a=e0_a, 
               ea_a=ea_a, 
+              mu_ta=mu_ta,
               mu_0a=mu_0a, 
               mu_a0=mu_a0
   )
